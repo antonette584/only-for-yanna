@@ -1,0 +1,800 @@
+
+/* =========================================
+   1. GENERAL SETTINGS
+========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --pink: #e99ab8;
+    --dark-pink: #b85f83;
+    --light-pink: #fff0f5;
+    --text: #765568;
+    --white: #fffdfd;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    position: relative;
+    isolation: isolate;
+    font-family: Georgia, serif;
+    color: var(--text);
+    background: linear-gradient(
+        135deg,
+        #fff0f5,
+        #f9dce8,
+        #fff7fa
+    );
+    overflow-x: hidden;
+}
+
+button {
+    font-family: inherit;
+    cursor: pointer;
+    border: none;
+}
+
+/* =========================================
+   2. BACKGROUND HEARTS
+========================================= */
+
+.floating-hearts {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.floating-heart {
+    position: absolute;
+    bottom: -40px;
+    color: #eaa0bd;
+    opacity: 0.45;
+    animation: floatUp linear infinite;
+}
+
+main {
+    position: relative;
+    z-index: 1;
+}
+
+/* =========================================
+   3. SCREEN TRANSITIONS
+========================================= */
+
+.screen {
+    display: none;
+    width: 100%;
+    min-height: 100vh;
+    padding: 35px 18px;
+    align-items: center;
+    justify-content: center;
+}
+
+.screen.active {
+    display: flex;
+    animation: fadeIn 0.6s ease;
+}
+
+/* =========================================
+   4. MAIN CARDS
+========================================= */
+
+.main-card,
+.detail-card {
+    width: 100%;
+    max-width: 850px;
+    padding: 45px;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.91);
+    border: 1px solid rgba(255, 255, 255, 0.95);
+    border-radius: 28px;
+    box-shadow: 0 15px 50px rgba(160, 91, 119, 0.15);
+}
+
+.eyebrow {
+    margin-bottom: 18px;
+    color: var(--dark-pink);
+    font-family: Arial, sans-serif;
+    font-size: 0.75rem;
+    font-weight: bold;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+h1 {
+    color: #a85276;
+    font-size: clamp(2rem, 5vw, 3rem);
+    line-height: 1.3;
+}
+
+p {
+    line-height: 1.8;
+}
+
+/* =========================================
+   5. YES OR NO INVITATION
+========================================= */
+
+#question-screen .main-card {
+    max-width: 650px;
+    padding: 50px 40px;
+    background: rgba(255, 255, 255, 0.94);
+    border: 2px solid white;
+    border-radius: 35px;
+    box-shadow: 0 20px 55px rgba(190, 113, 146, 0.18);
+}
+
+.snoopy-frame {
+    width: 230px;
+    height: 230px;
+    margin: 0 auto 28px;
+    overflow: hidden;
+    background: #fff0f5;
+    border: 8px solid white;
+    border-radius: 50%;
+    box-shadow: 0 8px 25px rgba(190, 113, 146, 0.17);
+}
+
+.snoopy-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+#question-text {
+    color: #a85276;
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    line-height: 1.4;
+}
+
+#question-subtitle {
+    margin: 18px 0 30px;
+    color: #987283;
+    font-size: 1rem;
+}
+
+.yes-no {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+    flex-wrap: wrap;
+    min-height: 110px;
+    overflow: visible;
+}
+
+.yes-button,
+.no-button {
+    min-width: 155px;
+    padding: 18px 38px;
+    border-radius: 35px;
+    font-family: Arial, sans-serif;
+    font-size: 1.15rem;
+    font-weight: bold;
+    transition:
+        transform 0.25s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.yes-button {
+    position: relative;
+    z-index: 2;
+    color: white;
+    background: #e88daf;
+    transform-origin: center;
+    box-shadow: 0 7px 18px rgba(216, 109, 152, 0.2);
+}
+
+.yes-button:hover {
+    background: #d96d98;
+}
+
+.no-button {
+    color: #a66d83;
+    background: #ffe5ef;
+}
+
+.no-button:hover {
+    background: #f8d0df;
+}
+
+.yes-button:disabled {
+    cursor: default;
+}
+
+.tiny-note {
+    margin-top: 30px;
+    color: #bd7895;
+    font-size: 0.8rem;
+    font-style: italic;
+}
+
+/* =========================================
+   6. FOUR CHOICES MENU
+========================================= */
+
+.menu-card {
+    max-width: 800px;
+}
+
+.menu-card h1 {
+    margin-bottom: 12px;
+}
+
+.menu-subtitle {
+    margin-bottom: 35px;
+    color: #987283;
+}
+
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.menu-option {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 185px;
+    padding: 25px 15px;
+    color: var(--text);
+    background: #fff5f8;
+    border: 1px solid #f9dce7;
+    border-radius: 22px;
+    transition: all 0.3s ease;
+}
+
+.menu-option:hover {
+    transform: translateY(-7px);
+    background: #ffeaf2;
+    box-shadow: 0 10px 25px rgba(186, 104, 139, 0.16);
+}
+
+.option-icon {
+    margin-bottom: 14px;
+    font-size: 3rem;
+}
+
+.menu-option strong {
+    color: #a85276;
+    font-size: 1.2rem;
+}
+
+.menu-option small {
+    margin-top: 8px;
+    color: #a88998;
+    font-family: Arial, sans-serif;
+    font-size: 0.8rem;
+}
+
+.menu-footer {
+    margin-top: 30px;
+    color: #bd7895;
+    font-style: italic;
+}
+
+/* =========================================
+   7. DETAIL PAGES
+========================================= */
+
+.detail-screen {
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+.detail-card {
+    text-align: left;
+}
+
+.detail-card h1 {
+    margin: 12px 0 20px;
+    text-align: center;
+}
+
+.detail-card > .eyebrow,
+.detail-subtitle {
+    text-align: center;
+}
+
+.detail-subtitle {
+    margin-bottom: 25px;
+    color: #987283;
+}
+
+.back-button {
+    padding: 12px 22px;
+    color: #a85276;
+    background: #ffeaf2;
+    border-radius: 25px;
+    font-family: Arial, sans-serif;
+    transition: 0.2s ease;
+}
+
+.back-button:hover {
+    color: white;
+    background: #dc83a6;
+}
+
+/* =========================================
+   8. FLOWERS
+========================================= */
+
+.peony-container {
+    width: 100%;
+    max-width: 470px;
+    height: 370px;
+    margin: 30px auto;
+    overflow: hidden;
+    background: #ffe8f0;
+    border: 8px solid white;
+    border-radius: 22px;
+    box-shadow: 0 8px 25px rgba(180, 104, 138, 0.15);
+}
+
+.peony-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.peony-container:hover img {
+    transform: scale(1.05);
+}
+
+.flower-message {
+    max-width: 620px;
+    margin: 25px auto;
+    color: #866477;
+    font-size: 1.1rem;
+    line-height: 2;
+    text-align: center;
+}
+
+.flower-signature {
+    color: #bd7895;
+    font-style: italic;
+    text-align: center;
+}
+
+/* =========================================
+   9. THINGS I LOVE ABOUT YOU
+========================================= */
+
+.love-collage {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 150px);
+    gap: 15px;
+    max-width: 690px;
+    margin: 35px auto;
+}
+
+.love-note {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px;
+    color: #a85276;
+    background: #fff0f5;
+    border: 1px solid #f5d5e1;
+    border-radius: 15px;
+    font-size: 0.95rem;
+    font-style: italic;
+    text-align: center;
+    transition: 0.3s ease;
+}
+
+.love-note:hover {
+    transform: scale(1.06);
+    background: #ffe5ef;
+}
+
+.note-one {
+    transform: rotate(-3deg);
+}
+
+.note-two {
+    transform: rotate(2deg);
+}
+
+.note-three {
+    transform: rotate(-2deg);
+}
+
+.note-four {
+    transform: rotate(2deg);
+}
+
+.note-five {
+    transform: rotate(-2deg);
+}
+
+.note-six {
+    transform: rotate(3deg);
+}
+
+.note-seven {
+    transform: rotate(-2deg);
+}
+
+.note-eight {
+    transform: rotate(2deg);
+}
+
+.center-photo {
+    grid-column: 2;
+    grid-row: 2;
+    overflow: hidden;
+    border: 7px solid white;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(180, 104, 138, 0.15);
+}
+
+.center-photo img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.love-ending {
+    margin-top: 25px;
+    color: #a85276;
+    font-style: italic;
+    text-align: center;
+}
+
+/* =========================================
+   10. LETTER PAGE
+========================================= */
+
+.letter-page {
+    max-width: 850px;
+    background: rgba(255, 255, 255, 0.93);
+}
+
+.letter-paper {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 690px;
+    margin: 30px auto 0;
+    padding: 55px;
+    background:
+        repeating-linear-gradient(
+            to bottom,
+            transparent 0px,
+            transparent 35px,
+            rgba(224, 170, 190, 0.12) 36px
+        ),
+        #fffafc;
+    border: 1px solid #f0d5e0;
+    border-radius: 5px;
+    box-shadow: 0 12px 35px rgba(180, 104, 138, 0.13);
+}
+
+.letter-paper h1 {
+    margin-bottom: 12px;
+    font-family: Georgia, serif;
+    font-size: 2.3rem;
+    text-align: center;
+}
+
+.letter-date {
+    margin-bottom: 40px;
+    color: #b18a9c;
+    font-style: italic;
+    text-align: center;
+}
+
+.letter-paper h3 {
+    margin-bottom: 25px;
+    color: #a85276;
+}
+
+.letter-paper p:not(.letter-date) {
+    margin-bottom: 24px;
+    color: #765a69;
+    font-size: 1rem;
+    line-height: 2;
+    text-align: left;
+}
+
+.letter-paper .letter-signature {
+    margin-top: 40px;
+    color: #a85276;
+    font-style: italic;
+}
+
+/* =========================================
+   11. SONGS PAGE
+========================================= */
+
+.songs-page {
+    max-width: 800px;
+}
+
+.vinyl-area {
+    display: flex;
+    justify-content: center;
+    padding: 30px 0 40px;
+}
+
+.vinyl {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 220px;
+    height: 220px;
+    background: repeating-radial-gradient(
+        circle,
+        #27212a 0px,
+        #27212a 3px,
+        #403443 4px,
+        #27212a 6px
+    );
+    border: 7px solid #1c1720;
+    border-radius: 50%;
+    box-shadow: 0 12px 30px rgba(50, 25, 40, 0.2);
+}
+
+.vinyl::before {
+    content: "";
+    position: absolute;
+    width: 110px;
+    height: 110px;
+    border: 2px solid rgba(255,255,255,0.15);
+    border-radius: 50%;
+}
+
+.vinyl-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 68px;
+    height: 68px;
+    color: white;
+    background: #e99ab8;
+    border: 5px solid #f6c7d9;
+    border-radius: 50%;
+    font-size: 2rem;
+}
+
+.vinyl-label span {
+    transform: translateY(-2px);
+}
+
+.vinyl.playing {
+    animation: spin 3s linear infinite;
+}
+
+.song-card {
+    margin: 20px 0;
+    padding: 28px;
+    background: #fff5f8;
+    border: 1px solid #f6dce6;
+    border-radius: 20px;
+}
+
+.song-number {
+    color: #bd7895;
+    font-family: Arial, sans-serif;
+    font-size: 0.7rem;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.song-card h2 {
+    margin-top: 10px;
+    color: #a85276;
+    font-size: 1.7rem;
+}
+
+.artist {
+    margin: 5px 0 20px;
+    color: #a88998;
+}
+
+.spotify-player {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    border: 0;
+    border-radius: 12px;
+    margin: 12px 0 18px;
+}
+
+.audio-player {
+    display: block;
+    width: 100%;
+    margin: 15px 0 25px;
+    accent-color: #d96d98;
+}
+
+.dedication {
+    padding-top: 20px;
+    color: #866477;
+    border-top: 1px solid #f0d6e1;
+    font-size: 0.95rem;
+    line-height: 1.9;
+    text-align: center;
+}
+
+.song-footer {
+    margin-top: 30px;
+    color: #bd7895;
+    font-style: italic;
+    text-align: center;
+}
+
+/* =========================================
+   12. ANIMATIONS
+========================================= */
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes floatUp {
+    from {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0;
+    }
+
+    15% {
+        opacity: 0.5;
+    }
+
+    to {
+        transform: translateY(-110vh) rotate(35deg);
+        opacity: 0;
+    }
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* =========================================
+   13. MOBILE RESPONSIVENESS
+========================================= */
+
+@media (max-width: 600px) {
+
+    .screen {
+        padding: 18px 12px;
+    }
+
+    .main-card,
+    .detail-card {
+        padding: 28px 18px;
+        border-radius: 22px;
+    }
+
+    #question-screen .main-card {
+        padding: 35px 20px;
+    }
+
+    .snoopy-frame {
+        width: 175px;
+        height: 175px;
+    }
+
+    #question-text {
+        font-size: 1.8rem;
+    }
+
+    .yes-no {
+        gap: 15px;
+        min-height: 90px;
+    }
+
+    .yes-button,
+    .no-button {
+        min-width: 115px;
+        padding: 14px 22px;
+        font-size: 1rem;
+    }
+
+    .menu-grid {
+        gap: 12px;
+    }
+
+    .menu-option {
+        min-height: 145px;
+        padding: 14px 7px;
+    }
+
+    .option-icon {
+        font-size: 2.2rem;
+    }
+
+    .menu-option strong {
+        font-size: 0.9rem;
+    }
+
+    .menu-option small {
+        font-size: 0.68rem;
+    }
+
+    .peony-container {
+        height: 260px;
+    }
+
+    .love-collage {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(5, 110px);
+        gap: 10px;
+    }
+
+    .center-photo {
+        grid-column: 1 / 3;
+        grid-row: 3;
+    }
+
+    .love-note {
+        font-size: 0.8rem;
+    }
+
+    .letter-paper {
+        padding: 30px 20px;
+    }
+
+    .letter-paper h1 {
+        font-size: 1.8rem;
+    }
+
+    .letter-paper p:not(.letter-date) {
+        font-size: 0.9rem;
+    }
+
+    .vinyl {
+        width: 180px;
+        height: 180px;
+    }
+
+    .song-card {
+        padding: 20px 15px;
+    }
+}
+
+/* =========================================
+   14. REDUCED MOTION
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+    }
+
+}
